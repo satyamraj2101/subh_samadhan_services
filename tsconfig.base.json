@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "paths": {
+      "@shubh-samadhan/shared-auth": ["./libs/auth/src"],
+      "@shubh-samadhan/shared-database": ["./libs/database/src"],
+      "@shubh-samadhan/shared-dto-schemas": ["./libs/dto-schemas/src"],
+      "@shubh-samadhan/shared-event-bus": ["./libs/event-bus/src"],
+      "@shubh-samadhan/shared-logger": ["./libs/logger/src"]
+    },
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true
+  },
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}

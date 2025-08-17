@@ -1,0 +1,24 @@
+{
+  "name": "@shubh-samadhan/shared-database",
+  "version": "1.0.0",
+  "description": "Shared database utilities and connections",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist",
+    "migrate": "knex migrate:latest",
+    "migrate:rollback": "knex migrate:rollback",
+    "seed": "knex seed:run"
+  },
+  "dependencies": {
+    "knex": "^3.0.0",
+    "pg": "^8.11.0",
+    "mongoose": "^8.0.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.10.0",
+    "typescript": "^5.0.0"
+  }
+}

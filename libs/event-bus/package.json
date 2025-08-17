@@ -1,0 +1,20 @@
+{
+  "name": "@shubh-samadhan/shared-event-bus",
+  "version": "1.0.0",
+  "description": "Shared event bus utilities for Redis pub/sub",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rimraf dist"
+  },
+  "dependencies": {
+    "redis": "^4.6.0",
+    "bullmq": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/redis": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}

@@ -1,0 +1,58 @@
+name: CI Pipeline
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      services: ${{ steps.changes.outputs.services }}
+      libs: ${{ steps.changes.outputs.libs }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            api-gateway:
+              - 'services/api-gateway/**'
+            auth-service:
+              - 'services/auth-service/**'
+            ticketing-service:
+              - 'services/ticketing-service/**'
+            engagement-service:
+              - 'services/engagement-service/**'
+            notification-service:
+              - 'services/notification-service/**'
+            automation-service:
+              - 'services/automation-service/**'
+            shared-libs:
+              - 'libs/**'
+
+  test-and-build:
+    needs: detect-changes
+    runs-on: ubuntu-latest
+    if: needs.detect-changes.outputs.services != '[]' || needs.detect-changes.outputs.libs != '[]'
+    strategy:
+      matrix:
+        service: [api-gateway, auth-service, ticketing-service, engagement-service, notification-service, automation-service]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linting
+        run: npm run lint
+      
+      - name: Run tests
+        run: npm run test
+      
+      - name: Build project
+        run: npm run build
