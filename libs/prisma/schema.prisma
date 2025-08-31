@@ -95,10 +95,9 @@ enum TicketEventType {
  * ============================
  */
 model User {
-
   id              String     @id @default(uuid())
   email           String     @unique
-  passwordHash    String? // null for pure SSO
+  passwordHash    String?    // null for pure SSO
   passwordVersion Int        @default(1)
   fullName        String
   phoneE164       String?
@@ -131,7 +130,6 @@ model User {
 }
 
 model Role {
-
   id          String   @id @default(uuid())
   code        String   @unique // ADMIN, AGENT, CUSTOMER
   name        String
@@ -145,7 +143,6 @@ model Role {
 }
 
 model Permission {
-
   id          String  @id @default(uuid())
   code        String  @unique // e.g., ticket:assign
   description String?
@@ -156,7 +153,6 @@ model Permission {
 }
 
 model UserRole {
-
   userId    String
   roleId    String
   grantedAt DateTime @default(now())
@@ -169,7 +165,6 @@ model UserRole {
 }
 
 model RolePermission {
-
   roleId       String
   permissionId String
 
@@ -181,7 +176,6 @@ model RolePermission {
 }
 
 model AuthAccount {
-
   id                String       @id @default(uuid())
   userId            String
   provider          AuthProvider
@@ -197,7 +191,6 @@ model AuthAccount {
 }
 
 model RefreshToken {
-
   id        String    @id @default(uuid())
   userId    String
   tokenHash String    @unique
@@ -215,7 +208,6 @@ model RefreshToken {
 }
 
 model PasswordReset {
-
   id        String    @id @default(uuid())
   userId    String
   tokenHash String    @unique
@@ -229,7 +221,6 @@ model PasswordReset {
 }
 
 model EmailVerification {
-
   id        String    @id @default(uuid())
   userId    String
   tokenHash String    @unique
@@ -243,7 +234,6 @@ model EmailVerification {
 }
 
 model UserNotificationPref {
-
   id      String              @id @default(uuid())
   userId  String
   channel NotificationChannel
@@ -261,7 +251,6 @@ model UserNotificationPref {
  * ============================
  */
 model Team {
-
   id        String   @id @default(uuid())
   code      String   @unique
   name      String
@@ -274,7 +263,6 @@ model Team {
 }
 
 model TeamMember {
-
   teamId   String
   userId   String
   isLead   Boolean  @default(false)
@@ -293,7 +281,6 @@ model TeamMember {
  * ============================
  */
 model TicketCategory {
-
   id        String   @id @default(uuid())
   parentId  String?
   slug      String   @unique
@@ -311,7 +298,6 @@ model TicketCategory {
 }
 
 model Ticket {
-
   id           String         @id @default(uuid())
   customerId   String
   assigneeId   String?
@@ -345,7 +331,6 @@ model Ticket {
 }
 
 model TicketComment {
-
   id         String   @id @default(uuid())
   ticketId   String
   authorId   String
@@ -361,7 +346,6 @@ model TicketComment {
 }
 
 model TicketEvent {
-
   id        String          @id @default(uuid())
   ticketId  String
   actorId   String?
@@ -382,7 +366,6 @@ model TicketEvent {
  * ============================
  */
 model Document {
-
   id             String         @id @default(uuid())
   ticketId       String
   uploadedBy     String
@@ -414,7 +397,6 @@ model Document {
  * ============================
  */
 model ContentCategory {
-
   id        String   @id @default(uuid())
   slug      String   @unique
   name      String
@@ -426,7 +408,6 @@ model ContentCategory {
 }
 
 model ContentPage {
-
   id          String        @id @default(uuid())
   categoryId  String?
   slug        String        @unique
@@ -451,7 +432,6 @@ model ContentPage {
  * ============================
  */
 model Referral {
-
   id             String   @id @default(uuid())
   referrerUserId String
   referredUserId String?  @unique

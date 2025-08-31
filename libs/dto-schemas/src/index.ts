@@ -1,0 +1,7 @@
+export * from './register.dto'
+export * from './login.dto'
+export * from './forgot-start.dto'
+export * from './forgot-verify.dto'
+export * from './reset-password.dto'
+export * from './validators'
+export * as AuthDto from './auth'
